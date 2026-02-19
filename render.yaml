@@ -1,0 +1,15 @@
+# Broward Health AI Content API
+# Deploy to Render: https://render.com/deploy?repo=https://github.com/your-repo
+
+build:
+  commands:
+    - pip install -r requirements.txt
+start:
+  command: uvicorn main:app --host 0.0.0.0 --port $PORT
+envVars:
+  - key: SUPABASE_URL
+    value: https://kzwjzxmjjnlolpdpzuvz.supabase.co
+  - key: SUPABASE_SERVICE_KEY
+    value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt6d2p6eG1qam5sb2xwZHB6dXZ6Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTYyMjM0NjgwMCwiZXhwIjoxOTM3OTIyODAwfQ.UJ9D_4J5JjQRMXHNmKZQJhJhL4Z1HbG8dWmu5X7kF7I
+  - key: MINIMAX_API_KEY
+    value: sk-api-drbjMH0rJxV7RPe2fZIEs9p2QO5eiGCykg1WFMhnN83oyJUSXoi2D4X170eKWs0wCfTkKQh_m3B7UZsjovo-kMsT6lti_ZvojEbSHR3BrgExjwte2LbygMU
