@@ -223,20 +223,15 @@ async def get_generation_status(request_id: str):
         created_at=req['created_at']
     )
 
-@app.get("/v1/drafts", response_model=List[DraftResponse])
-async def list_drafts(limit: int = 20):
-    """List all drafts"""
-    sb = get_supabase()
-    
-    result = sb.table('drafts').select('id, title, content, seo_score, workflow_status').order('created_at', desc=True).limit(limit).execute()
-    
-    return [DraftResponse(**{
-        'id': d['id'],
-        'title': d['title'],
-        'content': d.get('content', '')[:500],
-        'seo_score': d.get('seo_score', 0),
-        'workflow_status': d.get('workflow_status', 'draft')
-    }) for d in result.data]
+@app.get("/v1/drafts")
+async def list_drafts():
+    """List all drafts - debug version"""
+    try:
+        sb = get_supabase()
+        result = sb.table('drafts').select('*').limit(5).execute()
+        return {"drafts": result.data, "count": len(result.data)}
+    except Exception as e:
+        return {"error": str(e), "type": type(e).__name__}
 
 @app.get("/v1/drafts/{draft_id}")
 async def get_draft(draft_id: str):
