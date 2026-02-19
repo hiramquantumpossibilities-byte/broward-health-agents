@@ -42,16 +42,9 @@ supabase: Optional[Client] = None
 def get_supabase() -> Client:
     global supabase
     if supabase is None:
-        # Load from environment or use defaults
-        supabase_url = os.getenv("SUPABASE_URL")
-        supabase_key = os.getenv("SUPABASE_SERVICE_KEY")
-        
-        # Use hardcoded defaults if not set
-        if not supabase_url:
-            supabase_url = "https://kzwjzxmjjnlolpdpzuvz.supabase.co"
-        if not supabase_key:
-            supabase_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt6d2p6eG1qam5sb2xwZHB6dXZ6Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTYyMjM0NjgwMCwiZXhwIjoxOTM3OTIyODAwfQ.UJ9D_4J5JjQRMXHNmKZQJhJhL4Z1HbG8dWmu5X7kF7I"
-        
+        # Hardcoded for deployment - should use env vars in production
+        supabase_url = "https://kzwjzxmjjnlolpdpzuvz.supabase.co"
+        supabase_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt6d2p6eG1qam5sb2xwZHB6dXZ6Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTYyMjM0NjgwMCwiZXhwIjoxOTM3OTIyODAwfQ.UJ9D_4J5JjQRMXHNmKZQJhJhL4Z1HbG8dWmu5X7kF7I"
         print(f"Connecting to Supabase: {supabase_url}")
         supabase = create_client(supabase_url, supabase_key)
     return supabase
